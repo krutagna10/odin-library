@@ -22,16 +22,19 @@ function Book(id, title, author, pages, isRead) {
 
 // Adding methods to prototypes
 Library.prototype.addBook = function (id, title, author, pages, isRead) {
-  this.books.push(new Book(id, title, author, pages, isRead));
+  const newBook = new Book(id, title, author, pages, isRead);
+  this.books = [...this.books, newBook];
   library.render();
 };
 
-Library.prototype.deleteBook = function (elTableRow, elButton, deleteId) {
-  elButton.addEventListener("click", () => {
-    elTableRow.remove();
-    const index = this.books.findIndex((book) => book.id === deleteId);
-    this.books.splice(index, 1);
-    library.render();
+Library.prototype.deleteBook = function (deleteId) {
+  this.books = this.books.filter((book) => book.id !== deleteId);
+  library.render();
+};
+
+Library.prototype.editBook = function (newBook) {
+  this.books = this.books.map((book) => {
+    return book.id === newBook.id ? newBook : book;
   });
 };
 
@@ -41,9 +44,6 @@ Library.prototype.render = function () {
 
   for (const book of this.books) {
     const elTableRow = document.createElement("tr");
-
-    const elTableDataIndex = document.createElement("td");
-    elTableDataIndex.textContent = book.id;
 
     const elTableDataTitle = document.createElement("td");
     elTableDataTitle.textContent = book.title;
@@ -60,16 +60,22 @@ Library.prototype.render = function () {
     elIsReadCheckbox.checked = book.isRead;
     elTableDataIsRead.append(elIsReadCheckbox);
 
+    elIsReadCheckbox.addEventListener("change", () => {
+      library.editBook({ ...book, isRead: elIsReadCheckbox.checked });
+    });
+
     const elTableDataButton = document.createElement("td");
     const elBtnDelete = document.createElement("button");
     elBtnDelete.textContent = "Delete";
     elBtnDelete.classList.add("btn", "btn--red");
     elTableDataButton.append(elBtnDelete);
 
-    library.deleteBook(elTableRow, elBtnDelete, book);
+    elBtnDelete.addEventListener("click", () => {
+      elTableRow.remove();
+      library.deleteBook(book.id);
+    });
 
     elTableRow.append(
-      elTableDataIndex,
       elTableDataTitle,
       elTableDataAuthor,
       elTableDataPages,
@@ -79,7 +85,7 @@ Library.prototype.render = function () {
     elTableBody.append(elTableRow);
   }
 
-  if (library.length === 0) {
+  if (this.books.length === 0) {
     const elTableRow = document.createElement("tr");
     const elTableDataMessage = document.createElement("td");
     elTableDataMessage.textContent = "No books in the library";
@@ -89,21 +95,43 @@ Library.prototype.render = function () {
   }
 };
 
-
 elForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const id = library.length + 1;
+  const id = crypto.randomUUID();
   const title = elInputTitle.value;
   const author = elInputAuthor.value;
   const pages = Number(elInputPages.value);
   const isRead = elInputIsRead.checked;
-
   library.addBook(id, title, author, pages, isRead);
+
+  // Resetting input values
+  elInputTitle.value = "";
+  elInputAuthor.value = "";
+  elInputPages.value = "";
+  elInputIsRead.checked = false;
 });
 
 let library = new Library();
-library.addBook(1, "Game of Thrones", "George R.R. Martin", 900, true);
-library.addBook(2, "A Clash of Kings", "George R.R. Martin", 900, true);
-library.addBook(3, "A Storm of Swords", "George R.R. Martin", 900, false);
+library.addBook(
+  crypto.randomUUID(),
+  "Game of Thrones",
+  "George R.R. Martin",
+  900,
+  true,
+);
+library.addBook(
+  crypto.randomUUID(),
+  "A Clash of Kings",
+  "George R.R. Martin",
+  900,
+  true,
+);
+library.addBook(
+  crypto.randomUUID(),
+  "A Storm of Swords",
+  "George R.R. Martin",
+  900,
+  false,
+);
 library.render();
