@@ -1,0 +1,110 @@
+:root {
+  --dark-grey: #181a1b;
+  --green: rgb(111, 227, 142);
+  --dark-green: rgb(9, 206, 61);
+  --red: rgb(255, 131, 131);
+  --dark-red: rgb(255, 87, 87);
+  --yellow: rgb(255, 212, 59);
+  --dark-yellow: rgb(217, 171, 12);
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  position: relative;
+  margin: 0;
+  background-color: var(--dark-grey);
+  color: #f1f1f1;
+  text-align: center;
+}
+
+.flow > * + * {
+  margin-top: 1.25rem;
+}
+
+/* Form Styling */
+.form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form > input {
+  padding: 0.5rem;
+}
+
+/* Table Styling */
+table {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+th,
+td {
+  padding: 1rem;
+}
+
+table,
+th,
+td {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-collapse: collapse;
+}
+
+/* Button Utility */
+.btn {
+  display: block;
+  padding: 0.4125rem 1.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.btn--green {
+  color: var(--green);
+  border: 2px solid var(--green);
+  background-color: rgba(111, 227, 142, 0.15);
+}
+
+.btn--green:hover {
+  color: var(--dark-green);
+  border: 2px solid var(--dark-green);
+}
+
+.btn--red {
+  color: var(--red);
+  border: 2px solid var(--red);
+  background-color: rgba(255, 131, 131, 0.15);
+}
+
+.btn--red:hover {
+  color: var(--dark-red);
+  border: 2px solid var(--dark-red);
+}
+
+.btn--yellow {
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+  background-color: rgba(255, 212, 59, 0.15);
+}
+
+.btn--yellow:hover {
+  color: var(--dark-yellow);
+  border: 2px solid var(--dark-yellow);
+}

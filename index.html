@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x18"
+      href="./assets/typescript-icon.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="./js/script.js"></script>
+    <title>HTML Typescript Template</title>
+  </head>
+  <body>
+    <h1>Odin Library</h1>
+    <form class="form">
+      <input class="title" type="text" placeholder="Enter Book Name" required />
+      <input class="author" type="text" placeholder="Enter Author" required />
+      <input class="pages" type="number" placeholder="Enter pages" required />
+      <div>
+        <label> Is Read </label>
+        <input class="read" type="checkbox" />
+      </div>
+      <button class="btn btn--green">Submit</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Pages</th>
+          <th>Is Read</th>
+          <th>Delete Button</th>
+        </tr>
+      </thead>
+      <tbody class="tbody"></tbody>
+    </table>
+  </body>
+</html>
