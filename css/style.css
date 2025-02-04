@@ -66,6 +66,10 @@ td {
   border-collapse: collapse;
 }
 
+table button {
+  width: 100%;
+}
+
 /* Button Utility */
 .btn {
   display: block;
