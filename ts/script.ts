@@ -15,7 +15,7 @@ interface Book {
 }
 
 class Library {
-  books: Book[];
+  private books: Book[];
 
   constructor() {
     this.books = [];
