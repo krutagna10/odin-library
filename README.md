@@ -9,5 +9,4 @@ Odin Library is a simple library app which utilizes constructor functions to man
 
 - HTML
 - CSS 
-- Javascript
-
+- Typescript
